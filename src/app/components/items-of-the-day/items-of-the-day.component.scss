@@ -1,0 +1,29 @@
+// .itemsoftheday__layout__wrapper {
+//   text-align: center;
+// }
+.header {
+  text-align: center;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+.action__wrapper {
+  display: flex;
+}
+.customize__paginator {
+  flex: 0 0 80%;
+  display: flex;
+}
+.customize__itemsoftheday__table {
+  max-height: 40vh;
+  overflow: auto;
+}

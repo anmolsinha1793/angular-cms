@@ -1,0 +1,16 @@
+.available__items__layout__wrapper, .transaction__details__layout__wrapper, .user__layout__wrapper, .itemsoftheday__layout__wrapper {
+  width: 47vw;
+  // height: 50vh;
+  margin: 16px;
+}
+.customize__action__button {
+  max-height: 40px;
+  position: relative;
+  top: 10px;
+}
+.max-width-10-per {
+  width: 10% !important;
+}
+.white__space__no__wrap {
+  white-space: nowrap;
+}

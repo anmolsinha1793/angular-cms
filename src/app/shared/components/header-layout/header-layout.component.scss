@@ -1,0 +1,9 @@
+@import "variables";
+
+.customize__toolbar {
+  display: flex;
+  justify-content: center;
+  font-family: $font-family-roboto;
+  font-style: $font-style-normal;
+  font-size: 14;
+}

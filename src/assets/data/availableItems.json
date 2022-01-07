@@ -1,0 +1,70 @@
+{
+    "data": [
+      {
+        "itemCode": "test001",
+        "itemName": "Fried rice",
+        "basePrice": 50,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test002",
+        "itemName": "Fried Manchurian",
+        "basePrice": 150,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test003",
+        "itemName": "Chapati Veg Curry",
+        "basePrice": 100,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test004",
+        "itemName": "Chowmin",
+        "basePrice": 50,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test005",
+        "itemName": "Veg roll",
+        "basePrice": 60,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test006",
+        "itemName": "Shawarma",
+        "basePrice": 70,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test007",
+        "itemName": "Chicken Curry",
+        "basePrice": 170,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test008",
+        "itemName": "Fish Masala",
+        "basePrice": 120,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test009",
+        "itemName": "Mutton Masala",
+        "basePrice": 270,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test010",
+        "itemName": "Rajma Masala",
+        "basePrice": 140,
+        "itemQuantity": 50
+      },
+      {
+        "itemCode": "test009",
+        "itemName": "Chana Masala",
+        "basePrice": 180,
+        "itemQuantity": 50
+      }
+    ]
+  }
