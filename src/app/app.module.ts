@@ -15,8 +15,6 @@ import { AvailableItemsComponent } from './components/available-items/available-
 import { MyTransactionsComponent } from './components/my-transactions/my-transactions.component';
 import { PassbookComponent } from './components/passbook/passbook.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
-import { AddItemOfTheDayComponent } from './components/add-item-of-the-day/add-item-of-the-day.component';
-import { AddItemComponent } from './components/add-item/add-item.component';
 import { AddMoneyComponent } from './components/add-money/add-money.component';
 import { AdminLayoutComponent } from './modules/admin/admin-layout/admin-layout.component';
 import { EmployeeLayoutComponent } from './modules/employee/employee-layout/employee-layout.component';
@@ -43,8 +41,6 @@ import { BuyItemComponent } from './components/buy-item/buy-item.component';
     MyTransactionsComponent,
     PassbookComponent,
     AddUserComponent,
-    AddItemOfTheDayComponent,
-    AddItemComponent,
     AddMoneyComponent,
     AdminLayoutComponent,
     EmployeeLayoutComponent,

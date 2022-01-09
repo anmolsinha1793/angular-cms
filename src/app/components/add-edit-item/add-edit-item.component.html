@@ -25,10 +25,6 @@
     </mat-form-field>
   </p>
 
-  <!-- <p *ngIf="error" class="error">
-    {{ error }}
-  </p> -->
-
   <div class="action__wrapper">
       <button mat-stroked-button color="default" [mat-dialog-close]="data.maxQuantity ? [false] : false">Cancel</button>
       <button type="submit" [disabled]="!itemForm.valid" mat-flat-button color="primary">{{data.action}}</button>

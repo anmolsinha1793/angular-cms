@@ -4,9 +4,6 @@
   <mat-card-content>
   <form [formGroup]="pickItemForm" (ngSubmit)="submit()">
   <p>
-    <!-- <mat-form-field>
-      <input type="text" matInput placeholder="Pick Item" formControlName="items">
-    </mat-form-field> -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Pick Item</mat-label>
       <input type="text" matInput formControlName="items" [matAutocomplete]="auto">
@@ -16,8 +13,6 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-
-    <!-- <span>Available Quantity: </span> -->
     <span class="component__wrapper">
       <app-increment-decrement [increment]="1" [maxLimit]="pickItemForm.controls['maxQuantity'].value" formControlName="totalQuantity"></app-increment-decrement>
     </span>

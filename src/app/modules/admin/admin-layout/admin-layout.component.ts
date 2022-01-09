@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { SetAvailableItems, SetItemsOfTheDay } from '@shared/actions/Items.action';
 import { SetTransaction } from '@shared/actions/Transactions.action';
 import { SetUser } from '@shared/actions/User.action';
-import { forkJoin, Subject, zip } from 'rxjs';
+import { forkJoin, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

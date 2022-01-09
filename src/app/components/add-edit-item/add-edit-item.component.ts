@@ -65,11 +65,13 @@ export class AddEditItemComponent implements OnInit {
       const items = this.store
         .selectSnapshot(CMSModelState.getItemsOfTheDay)
         .find((elm) => elm.itemCode === itemFormValue.itemCode);
-      availableItems.itemQuantity =
-        availableItems.itemQuantity -
-        (itemFormValue.itemQuantity - items.itemQuantity);
-      items.basePrice = itemFormValue.basePrice;
-      availableItems.basePrice = itemFormValue?.basePrice;
+        if (this.data.maxQuantity) {
+          availableItems.itemQuantity =
+          availableItems?.itemQuantity -
+          (itemFormValue?.itemQuantity - items?.itemQuantity);
+        items.basePrice = itemFormValue.basePrice;
+        availableItems.basePrice = itemFormValue?.basePrice;
+        }
       this.data.maxQuantity
         ? this.dialogRef.close([itemFormValue, availableItems])
         : this.dialogRef.close(itemFormValue);
