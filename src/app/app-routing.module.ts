@@ -11,12 +11,12 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, resolve: {loginData: LoginResolver}},
   {path: 'register', component: RegisterComponent},
   {path: 'admin-section', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
-  // canActivate: [AuthGuard],
-  // data: {role: 'ADMIN'}
+  canActivate: [AuthGuard],
+  data: {role: 'ADMIN'}
   },
   {path: 'employee-section', loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule),
-  // canActivate: [AuthGuard],
-  // data: {role: 'EMP'}
+  canActivate: [AuthGuard],
+  data: {role: 'EMP'}
 },
   {path: '**', redirectTo: '/login'},
 ];
