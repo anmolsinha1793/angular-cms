@@ -4,12 +4,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ApiService } from 'src/app/core/api/api.service';
-import { TransactionDetailsModel } from 'src/app/shared/models/TransactionDetails.model';
 import * as moment from 'moment';
-import { Select, Store } from '@ngxs/store';
-import { CMSModelState } from 'src/app/shared/state/cms.state';
-import { SetTransaction } from 'src/app/shared/actions/Transactions.action';
+import { Select } from '@ngxs/store';
+import { TransactionDetailsModel } from '@shared/models/TransactionDetails.model';
+import { CMSModelState } from '@shared/state/cms.state';
 
 enum NumberEnum {
   ZERO = 0,
@@ -23,11 +21,17 @@ enum NumberEnum {
 @Component({
   selector: 'app-transaction-details',
   templateUrl: './transaction-details.component.html',
-  styleUrls: ['./transaction-details.component.scss']
+  styleUrls: ['./transaction-details.component.scss'],
 })
 export class TransactionDetailsComponent implements OnInit {
-
-  displayedColumns: string[] = ['id', 'name', 'empId', 'transactionAmount', 'source', 'dateDetail'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'empId',
+    'transactionAmount',
+    'source',
+    'dateDetail',
+  ];
   dataSource!: MatTableDataSource<TransactionDetailsModel[]>;
   eventSubscription = new Subject();
   pageSize = 5;
@@ -40,32 +44,27 @@ export class TransactionDetailsComponent implements OnInit {
     TransactionDetailsModel[]
   >;
 
-  constructor(private apiService: ApiService, private store: Store) {
-  }
+  constructor() {}
   ngOnInit() {
-    this.fetchTransactionData();
     this.setTransactionsDataForTable();
   }
   /**
    * Function to fetch data from state and update table
    * @returns void.
    */
- setTransactionsDataForTable(): void {
-  this.transactionData$
-    .pipe(
-      takeUntil(this.eventSubscription)
-    )
-    .subscribe(
+  setTransactionsDataForTable(): void {
+    this.transactionData$.pipe(takeUntil(this.eventSubscription)).subscribe(
       (res: TransactionDetailsModel[]) => {
         if (res.length > NumberEnum.ZERO) {
-          this.dataResult = res.map((el: TransactionDetailsModel, i: number) => {
-            return {
-              ...el,
-              id: i+1,
-              dateDetail: moment(el.dateDetail).format('MM/DD/YYYY HH:mm:ss')
+          this.dataResult = res.map(
+            (el: TransactionDetailsModel, i: number) => {
+              return {
+                ...el,
+                id: i + 1,
+                dateDetail: moment(el.dateDetail).format('MM/DD/YYYY HH:mm:ss'),
+              };
             }
-          });
-          console.log(this.dataResult);
+          ) as any;
           this.totalSize = this.dataResult.length;
           this.dataSource = new MatTableDataSource(this.dataResult as any);
           this.dataSource.paginator = this.paginator;
@@ -74,15 +73,13 @@ export class TransactionDetailsComponent implements OnInit {
       },
       (err) => {}
     );
-}
-  fetchTransactionData(): void {
-    this.apiService.fetchTransactionDetails()
-      .pipe(takeUntil(this.eventSubscription))
-      .subscribe((res: any) => {
-        this.store.dispatch(new SetTransaction(res.data));
-      });
   }
-  applyFilter(event: Event) {
+  /**
+   * Function to apply filter
+   * @param event item which needs to be filtered
+   * @returns void.
+   */
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

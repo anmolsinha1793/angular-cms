@@ -1,0 +1,32 @@
+<div class="make__purchase__wrapper">
+  <div class="items__header">
+    <span class="customize__item">Item</span>
+    <span class="customize__price__header">Price (per item)</span>
+    <span>Quantity</span>
+    <span class="customize__tprice__header">Total Price</span>
+  </div>
+  <div class="items__content">
+    <form [formGroup]="purchaseForm">
+    <div class="content__wrapper" *ngFor="let item of itemsToDisplay; let i = index">
+      <span class="customize__item">{{item.itemName}}</span>
+      <span class="customize__price">{{item.basePrice}}</span>
+      <input type="number" class="customize__input" [ngClass]="{'red-border-class': getName(item.itemName).hasError('max')}" matInput formControlName="{{item.itemName}}" min="0" max="{{item.itemQuantity}}" novalidate [class.invalid]="getName(item.itemName).invalid"/>
+      <span *ngIf="getName(item.itemName).hasError('max')" class="customize__quantity__msg">Please enter a lesser quantity</span>
+      <span class="customize__price">{{+item.basePrice * purchaseForm.controls[item.itemName].value}}</span>
+    </div>
+  </form>
+  </div>
+  <div class="action__wrapper"  [ngClass]="{'padding__top__25': getGrandTotal() > data.balance}">
+    <hr>
+    <div class="grand__total__section">
+      <span>Grand Total:</span>
+      <span class="grand__total__amount">{{getGrandTotal()}}</span>
+    </div>
+    <span *ngIf="getGrandTotal() > data.balance">Oops, the grand total is more than the available balance, please adjust!!!</span>
+    <div class="button__wrapper" [ngClass]="{'custom__margin': getGrandTotal() > data.balance}">
+      <button mat-stroked-button color="default" [mat-dialog-close]="false">Cancel</button>
+      <button type="submit" [disabled]="getGrandTotal() > data.balance || getGrandTotal() === 0" mat-flat-button color="primary" (click)="makePurchase()">Make Purchase</button>
+    </div>
+  </div>
+
+</div>

@@ -2,3 +2,7 @@
   display: flex;
   justify-content: space-between;
 }
+:host ::ng-deep .itemsoftheday__layout__wrapper {
+  width: 47vw !important;
+  margin: 16px;
+}

@@ -1,0 +1,54 @@
+@import "variables";
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 300px;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  font-family: $font-family-roboto;
+  font-style: $font-style-normal;
+  font-size: 14;
+}
+
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+.customize__card {
+  border: 1px solid lightgray;
+}
+.register__wrapper {
+  margin-top: 15vh;
+}
+.action__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+::ng-deep .user__role__dropdownn {
+  min-width: calc(100%) !important;
+  border-radius: 5px;
+  position: relative;
+  left: 16px;
+  margin-top: 30px;
+}
+:host ::ng-deep .customize__card {
+  border: none;
+  box-shadow: none;
+}

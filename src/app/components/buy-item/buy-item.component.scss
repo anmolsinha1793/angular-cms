@@ -1,0 +1,61 @@
+.component__wrapper {
+  display: inline-block;
+  margin-left: 1rem;
+  &.item__price__wrapper {
+    width: 56px;
+  }
+}
+
+:host ::ng-deep .example-full-width .mat-autocomplete-panel {
+  max-height: 20px;
+}
+
+.customize__card__pick__item {
+  box-shadow: none;
+}
+.action__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+.customize__warning {
+  background-color: #e60000;
+  color: white
+}
+.customize__formgroup__wrapper {
+  max-height: 27vh;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.customize__form {
+  height: 36vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+:host ::ng-deep .mat-dialog-container {
+  padding: 8px !important;
+}
+.customize__choose__another {
+  text-decoration: underline;
+  color: #673ab7;
+  cursor: pointer;
+  position: relative;
+  top: 12px;
+}
+.customize__element__layout {
+  display: flex;
+  align-items: normal;
+  justify-content: space-between;
+}
+:host ::ng-deep .increment__wrapper .choose__quantity {
+  position: relative;
+  top: 12px;
+}
+.total__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}

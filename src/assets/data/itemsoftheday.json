@@ -1,5 +1,4 @@
-{
-  "data": [
+[
     {
       "itemCode": "test001",
       "itemName": "Fried rice",
@@ -37,4 +36,3 @@
       "itemQuantity": 50
     }
   ]
-}

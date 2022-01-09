@@ -1,20 +1,22 @@
-{
-  "data": [
+[
     {
       "name": "babu",
       "email": "ngbdnfm@fsjhf.com",
-      "empId": "test123785",
+      "empId": "test123456",
       "transactionAmount": 100,
       "dateDetail": 1638047268645,
-      "source": "self"
+      "source": "self",
+      "type": "credit"
     },
     {
       "name": "aditya",
       "email": "vxcvx@gmail.com",
-      "empId": "test123522",
+      "empId": "test987654",
       "transactionAmount": 150,
       "dateDetail": 1638047268645,
-      "source": "admin"
+      "source": "admin",
+      "type": "debit",
+      "item": "Shawarma"
     },
     {
       "name": "mahesh",
@@ -22,7 +24,8 @@
       "empId": "test123826",
       "transactionAmount": 200,
       "dateDetail": 1638047268645,
-      "source": "admin"
+      "source": "admin",
+      "type": "credit"
     },
     {
       "name": "ramesh",
@@ -30,7 +33,9 @@
       "empId": "test123792",
       "transactionAmount": 50,
       "dateDetail": 1638047268645,
-      "source": "self"
+      "source": "self",
+      "type": "debit",
+      "item": "Shawarma"
     },
     {
       "name": "chirag",
@@ -38,7 +43,8 @@
       "empId": "test123532",
       "transactionAmount": 900,
       "dateDetail": 1638047268645,
-      "source": "self"
+      "source": "self",
+      "type": "credit"
     }
   ]
-}
+

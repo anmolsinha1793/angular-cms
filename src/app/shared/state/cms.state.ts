@@ -1,13 +1,13 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { AddAmount } from "../actions/Amount.action";
-import { AddAvailableItems, AddItemsOfTheDay, SetAvailableItems, SetItemsOfTheDay } from "../actions/Items.action";
+import { AddAvailableItems, AddItemsOfTheDay, DeleteAvailableItems, DeleteItemsOfTheDay, EditItemsOfTheDay, SetAvailableItems, SetItemsOfTheDay, UpdateAvailableItems } from "../actions/Items.action";
 import { AddTransaction, SetTransaction } from "../actions/Transactions.action";
-import { AddUser, SetUser } from "../actions/User.action";
+import { AddUser, SetUser, UpdateUser } from "../actions/User.action";
 import { AvailableItemsModel } from "../models/AvailableItems.model";
 import { ItemsOfTheDayModel } from "../models/ItemsOfTheDay.model";
 import { TransactionDetailsModel } from "../models/TransactionDetails.model";
 import { UserModel } from "../models/User.model";
-import { patch, updateItem } from '@ngxs/store/operators';
+import { append, patch, removeItem, updateItem } from '@ngxs/store/operators';
+import { Injectable } from "@angular/core";
 
 // Section 2
 export class CMSModel {
@@ -27,6 +27,7 @@ export class CMSModel {
     transactionList: [],
   },
 })
+@Injectable()
 export class CMSModelState {
   @Selector()
   static getUserData(state: CMSModel): UserModel[] {
@@ -56,25 +57,31 @@ export class CMSModelState {
   }
   @Action(AddUser)
   addUser(
-    { getState, patchState }: StateContext<CMSModel>,
+    { getState, patchState, setState }: StateContext<CMSModel>,
     { payload }: AddUser
   ): void {
-    const state = getState();
-    patchState({
-      userList: [...state.userList, payload] as any,
-    });
-  }
-  @Action(AddAmount)
-  addAmount(
-    { setState }: StateContext<CMSModel>,
-    { payload }: AddAmount
-  ): void {
+    // const state = getState();
+    // patchState({
+    //   userList: [...state.userList, payload] as any,
+    // });
     setState(
       patch({
-        userList: updateItem((item: any) => item.empId === payload.empId, patch({ balance: payload.newAmount }))
+        userList: append([payload])
       })
     );
   }
+  @Action(UpdateUser)
+  updateUser(
+    { getState, patchState, setState }: StateContext<CMSModel>,
+    { payload }: UpdateUser
+  ): void {
+    setState(
+      patch({
+        userList: updateItem<UserModel>((item)=> item.empId === payload.empId, payload)
+      })
+    );
+  }
+
   @Action(SetTransaction)
   setTransaction(
     { getState, patchState }: StateContext<CMSModel>,
@@ -86,13 +93,18 @@ export class CMSModelState {
   }
   @Action(AddTransaction)
   addTransaction(
-    { getState, patchState }: StateContext<CMSModel>,
+    { getState, patchState, setState }: StateContext<CMSModel>,
     { payload }: AddTransaction
   ): void {
-    const state = getState();
-    patchState({
-      transactionList: [...state.userList, payload] as any,
-    });
+    // const state = getState();
+    // patchState({
+    //   transactionList: [...state.transactionList, payload] as any,
+    // });
+    setState(
+      patch({
+        transactionList: append([payload])
+      })
+    );
   }
   @Action(SetItemsOfTheDay)
   setItemsOfTheDay(
@@ -105,14 +117,39 @@ export class CMSModelState {
   }
   @Action(AddItemsOfTheDay)
   addItemsOfTheDay(
-    { getState, patchState }: StateContext<CMSModel>,
+    { getState, patchState, setState }: StateContext<CMSModel>,
     { payload }: AddItemsOfTheDay
   ): void {
-    const state = getState();
-    patchState({
-      itemsOfTheDay: [...state.itemsOfTheDay, payload] as any,
-    });
+    setState(
+      patch({
+        itemsOfTheDay: append([payload])
+      })
+    );
   }
+
+  @Action(EditItemsOfTheDay)
+  editItemsOfTheDay(
+    { getState, patchState, setState }: StateContext<CMSModel>,
+    { payload }: EditItemsOfTheDay
+  ): void {
+    setState(
+      patch({
+        itemsOfTheDay: updateItem<ItemsOfTheDayModel>((item) => item.itemCode === payload.itemCode, payload)
+      })
+    );
+  }
+  @Action(DeleteItemsOfTheDay)
+  deleteItemsOfTheDay(
+    { getState, patchState, setState }: StateContext<CMSModel>,
+    { payload }: DeleteItemsOfTheDay
+  ): void {
+    setState(
+      patch({
+        itemsOfTheDay: removeItem<ItemsOfTheDayModel>((item) => item.itemCode === payload.itemCode)
+      })
+    );
+  }
+
   @Action(SetAvailableItems)
   setAvailableItems(
     { getState, patchState }: StateContext<CMSModel>,
@@ -124,13 +161,40 @@ export class CMSModelState {
   }
   @Action(AddAvailableItems)
   addAvailableItems(
-    { getState, patchState }: StateContext<CMSModel>,
+    { getState, patchState, setState }: StateContext<CMSModel>,
     { payload }: AddAvailableItems
   ): void {
-    const state = getState();
-    patchState({
-      availableItems: [...state.availableItems, payload] as any,
-    });
+    // const state = getState();
+    // patchState({
+    //   availableItems: [...state.availableItems, payload] as any,
+    // });
+    setState(
+      patch({
+        availableItems: append([payload])
+      })
+    );
+  }
+  @Action(UpdateAvailableItems)
+  updateAvailableItems(
+    { getState, patchState, setState }: StateContext<CMSModel>,
+    { payload }: UpdateAvailableItems
+  ): void {
+    setState(
+      patch({
+        availableItems: updateItem<AvailableItemsModel>((item) => item.itemCode === payload.itemCode, payload)
+      })
+    )
+  }
+  @Action(DeleteAvailableItems)
+  deleteAvailableItems(
+    { getState, patchState, setState }: StateContext<CMSModel>,
+    { payload }: DeleteAvailableItems
+  ): void {
+    setState(
+      patch({
+        availableItems: removeItem<AvailableItemsModel>((item) => item.itemCode === payload.itemCode)
+      })
+    );
   }
   // @Action(AddItemsOfTheDay)
   // addItemsOfTheDay(

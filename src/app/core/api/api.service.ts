@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AvailableItemsModel } from '@shared/models/AvailableItems.model';
+import { ItemsOfTheDayModel } from '@shared/models/ItemsOfTheDay.model';
+import { TransactionDetailsModel } from '@shared/models/TransactionDetails.model';
+import { UserModel } from '@shared/models/User.model';
 import { Observable } from 'rxjs';
-import { AvailableItemsModel } from 'src/app/shared/models/AvailableItems.model';
-import { ItemsOfTheDayModel } from 'src/app/shared/models/ItemsOfTheDay.model';
-import { TransactionDetailsModel } from 'src/app/shared/models/TransactionDetails.model';
-import { UserModel } from 'src/app/shared/models/User.model';
 
 @Injectable({
   providedIn: 'root'

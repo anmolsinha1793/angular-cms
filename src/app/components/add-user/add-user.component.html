@@ -1,1 +1,46 @@
-<p>add-user works!</p>
+<div class="add__user__wrapper">
+  <mat-card class="customize__card">
+    <mat-card-title>Add User</mat-card-title>
+  <mat-card-content>
+  <form [formGroup]="addUserForm" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Employee Id" formControlName="empId">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Add Balance" formControlName="balance">
+    </mat-form-field>
+  </p>
+
+  <p *ngIf="error" class="error">
+    {{ error }}
+  </p>
+
+  <div class="action__wrapper">
+      <button mat-stroked-button [mat-dialog-close]="false" color="default">Cancel</button>
+      <button type="submit" [disabled]="!addUserForm.valid" mat-flat-button color="primary">Add</button>
+  </div>
+
+
+  </form>
+  </mat-card-content>
+  </mat-card>
+</div>

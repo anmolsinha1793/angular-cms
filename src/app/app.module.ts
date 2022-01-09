@@ -25,6 +25,11 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { CMSModelState } from './shared/state/cms.state';
+import { MakePurchaseComponent } from './components/make-purchase/make-purchase.component';
+import { AddEditItemComponent } from './components/add-edit-item/add-edit-item.component';
+import { PickDayItemComponent } from './components/pick-day-item/pick-day-item.component';
+import { IncrementDecrementComponent } from './components/increment-decrement/increment-decrement.component';
+import { BuyItemComponent } from './components/buy-item/buy-item.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,12 @@ import { CMSModelState } from './shared/state/cms.state';
     AddItemComponent,
     AddMoneyComponent,
     AdminLayoutComponent,
-    EmployeeLayoutComponent
+    EmployeeLayoutComponent,
+    MakePurchaseComponent,
+    AddEditItemComponent,
+    PickDayItemComponent,
+    IncrementDecrementComponent,
+    BuyItemComponent
   ],
   imports: [
     BrowserModule,

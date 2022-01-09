@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-layout',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
-
+  showLogout(): boolean {
+    return !!sessionStorage.getItem('role');
+  }
+  logout(): void {
+    sessionStorage.clear();
+    this.route.navigate(['./login']);
+  }
 }

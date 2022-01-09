@@ -1,0 +1,49 @@
+<div class="buy__item__wrapper">
+  <mat-card class="customize__card__pick__item">
+    <mat-card-title>Purchase Item</mat-card-title>
+  <mat-card-content>
+  <mat-card *ngIf="grandTotal > data.balance" class="customize__warning">You have exceeded the balance limit.</mat-card>
+  <form [formGroup]="purchaseItemForm" (ngSubmit)="submit()" class="customize__form">
+  <div formArrayName="chooseItem" class="customize__formgroup__wrapper">
+    <p *ngFor="let control of itemFormGroups.controls; let i = index" [formGroupName]="i" class="customize__element__layout">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Pick Item</mat-label>
+        <input type="text" matInput formControlName="selectedItem" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option" class="customize__pick__options">
+            {{option.itemName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <span class="component__wrapper increment__wrapper">
+        <app-increment-decrement [increment]="1" [maxLimit]="itemFormGroups.value[i]?.selectedItem?.itemQuantity" formControlName="quantity"></app-increment-decrement>
+      </span>
+      <span class="component__wrapper item__price__wrapper">
+        <mat-card>{{itemFormGroups.value[i].itemTotalPrice}}</mat-card>
+      </span>
+      <span class="component__wrapper">
+        <a (click)="addAnotherItem()" class="customize__choose__another">Choose another</a>
+      </span>
+
+    </p>
+  </div>
+
+
+  <div>
+    <hr>
+    <div class="total__wrapper">
+      <span>Grand Total: </span>
+      <span>{{grandTotal}}</span>
+    </div>
+    <div class="action__wrapper">
+      <button mat-stroked-button color="default" [mat-dialog-close]="[false]">Cancel</button>
+      <button type="submit" mat-flat-button color="primary" [disabled]="grandTotal === 0 || grandTotal > data.balance">Buy item(s)</button>
+    </div>
+  </div>
+
+
+  </form>
+  </mat-card-content>
+  </mat-card>
+</div>

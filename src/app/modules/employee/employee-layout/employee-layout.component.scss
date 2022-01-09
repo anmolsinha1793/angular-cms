@@ -1,0 +1,8 @@
+.first__section__wrapper, .second__section__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+:host ::ng-deep .itemsoftheday__layout__wrapper {
+  width: 97vw !important;
+  margin: 16px;
+}

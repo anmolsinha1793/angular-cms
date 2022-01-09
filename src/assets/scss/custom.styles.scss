@@ -1,6 +1,5 @@
-.available__items__layout__wrapper, .transaction__details__layout__wrapper, .user__layout__wrapper, .itemsoftheday__layout__wrapper {
+.available__items__layout__wrapper, .transaction__details__layout__wrapper, .user__layout__wrapper, .my__transactions__wrapper, .passbook__wrapper {
   width: 47vw;
-  // height: 50vh;
   margin: 16px;
 }
 .customize__action__button {
@@ -13,4 +12,18 @@
 }
 .white__space__no__wrap {
   white-space: nowrap;
+}
+.cursor__pointer {
+  cursor: pointer;
+}
+.cursor__notallowed {
+  cursor: not-allowed;
+}
+.customize__tooltip {
+  background: white;
+  color: black !important;
+  border: 1px solid grey !important;
+}
+h2 {
+  margin-bottom: 4px !important;
 }

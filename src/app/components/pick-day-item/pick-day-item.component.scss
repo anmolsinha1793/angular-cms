@@ -1,0 +1,17 @@
+.component__wrapper {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+:host ::ng-deep .example-full-width .mat-autocomplete-panel {
+  max-height: 20px;
+}
+
+.customize__card__pick__item {
+  box-shadow: none;
+}
+.action__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px;
+}

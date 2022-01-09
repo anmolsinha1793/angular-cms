@@ -1,0 +1,5 @@
+<div class="choose__quantity">
+  <mat-icon (click)="onRemove()" [ngClass]="{'cursor__notallowed': quantity<=0, 'cursor__pointer': quantity>0}" class="cursor__pointer" color="primary" [attr.disabled]="quantity<=0">remove_circle_outline</mat-icon>
+  <div class="quantity">{{quantity}}</div>
+  <mat-icon (click)="onAdd()" [ngClass]="{'cursor__notallowed': quantity>=maxLimit, 'cursor__pointer': quantity<maxLimit}" class="cursor__pointer" color="primary">add_circle_outline</mat-icon>
+</div>

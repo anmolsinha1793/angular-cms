@@ -10,3 +10,8 @@ export class AddUser {
 
   constructor(public payload: UserModel) {}
 }
+export class UpdateUser {
+  static readonly type = `[CMS] UpdateUser`;
+
+  constructor(public payload: UserModel) {}
+}

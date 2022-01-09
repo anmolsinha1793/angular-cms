@@ -1,0 +1,64 @@
+.items__header, .content__wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.grand__total__section {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.grand__total__amount {
+  flex: 0 0 10%;
+}
+.customize__item {
+  flex: 0 0 25%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+.customize__input{
+  max-width: 10%;
+  border: 0;
+  outline: none;
+  margin-left: 36px;
+  text-align: center;
+  border-bottom: 1px solid purple;
+}
+.make__purchase__wrapper {
+  padding: 16px;
+}
+.customize__price {
+  flex: 0 0 10%;
+}
+.customize__price__header {
+  flex: 0 0 20%;
+}
+.customize__tprice__header {
+  flex: 0 0 15%;
+}
+.button__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.padding__top__25 {
+  padding-top: 30px;
+}
+.error__field {
+  border-bottom: 1px solid red;
+}
+.items__content {
+  max-height: 190px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.customize__quantity__msg {
+  color: #e60000;
+}
+.custom__margin {
+  margin-top: 6px !important;
+}
+.red-border-class {
+  border-bottom: 1px solid #e60000;
+}

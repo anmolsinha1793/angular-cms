@@ -1,6 +1,10 @@
 <div class="header__layout__wrapper">
-  <mat-toolbar class="customize__toolbar" color="primary">
-    <span>Canteen Management System</span>
+  <mat-toolbar class="customize__toolbar" [ngClass]="{'justify__center': !showLogout()}" color="primary">
     <span class="example-spacer"></span>
+    <div class="title__wrapper">
+      <img src="assets/images/cms__logo.png" alt="">
+      <span>Canteen Management System</span>
+    </div>
+    <span *ngIf="showLogout()" class="customize__logout" (click)="logout()"><mat-icon class="customize__logout__icon">power_settings_new</mat-icon>Logout</span>
   </mat-toolbar>
 </div>

@@ -3,6 +3,8 @@ export interface TransactionDetailsModel {
   email: string;
   empId: string;
   transactionAmount: number;
-  dateDetail: any;
+  dateDetail: number;
   source: string;
+  type: string;
+  item?: string;
 }

@@ -11,7 +11,7 @@
 
   <p>
     <mat-form-field>
-      <input type="text" matInput placeholder="Available Balance" formControlName="balance">
+      <input type="text" matInput placeholder="Available Balance" readonly formControlName="balance">
     </mat-form-field>
   </p>
   <p>
@@ -26,6 +26,7 @@
 
   <div class="action__wrapper">
     <div class="button">
+      <button [mat-dialog-close]="[false, false]" mat-stroked-button color="default">Cancel</button>
       <button type="submit" [disabled]="!addMoneyForm.valid" mat-flat-button color="primary">Add Money</button>
     </div>
   </div>

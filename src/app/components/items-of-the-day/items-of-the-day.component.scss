@@ -18,12 +18,17 @@ td, th {
 }
 .action__wrapper {
   display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
 }
 .customize__paginator {
   flex: 0 0 80%;
   display: flex;
 }
 .customize__itemsoftheday__table {
-  max-height: 40vh;
+  min-height: 36vh;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

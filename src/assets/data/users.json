@@ -1,46 +1,59 @@
-{
-  "data": [
+ [
     {
       "name": "babu",
       "email": "ngbdnfm@fsjhf.com",
-      "empId": "test123785",
-      "balance": 500
+      "empId": "test123456",
+      "balance": 500,
+      "role": "ADMIN",
+      "password": "test@123"
     },
     {
       "name": "aditya",
       "email": "vxcvx@gmail.com",
-      "empId": "test123522",
-      "balance": 500
+      "empId": "test987654",
+      "balance": 500,
+      "role": "EMP",
+      "password": "test@123"
     },
     {
       "name": "mahesh",
       "email": "zczxc@yahoo.com",
       "empId": "test123826",
-      "balance": 500
+      "balance": 500,
+      "role": "EMP",
+      "password": "test@123"
     },
     {
       "name": "ramesh",
       "email": "eywue@yahoo.com",
       "empId": "test123792",
-      "balance": 500
+      "balance": 500,
+      "role": "EMP",
+      "password": "test@123"
     },
     {
       "name": "chirag",
       "email": "weiqiew@gmail.com",
       "empId": "test123532",
-      "balance": 500
+      "balance": 500,
+      "role": "EMP",
+      "password": "test@123"
     },
     {
       "name": "sunil",
       "email": "mmewr@fsjhf.com",
       "empId": "test123097",
-      "balance": 500
+      "balance": 500,
+      "role": "ADMIN",
+      "password": "test@123"
     },
     {
       "name": "chetan",
       "email": "asdsadeew@yahoo.com",
       "empId": "test123263",
-      "balance": 500
+      "balance": 500,
+      "role": "EMP",
+      "password": "test@123"
     }
   ]
-}
+

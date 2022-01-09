@@ -1,0 +1,41 @@
+<div class="add__item__wrapper">
+  <mat-card class="customize__card__add__edit">
+    <mat-card-title>{{data.action}} Item</mat-card-title>
+  <mat-card-content>
+  <form [formGroup]="itemForm" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Item Name" formControlName="itemName">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Item Code" formControlName="itemCode">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Base Price" formControlName="basePrice">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Item Quantity" formControlName="itemQuantity">
+    </mat-form-field>
+  </p>
+
+  <!-- <p *ngIf="error" class="error">
+    {{ error }}
+  </p> -->
+
+  <div class="action__wrapper">
+      <button mat-stroked-button color="default" [mat-dialog-close]="data.maxQuantity ? [false] : false">Cancel</button>
+      <button type="submit" [disabled]="!itemForm.valid" mat-flat-button color="primary">{{data.action}}</button>
+  </div>
+
+
+  </form>
+  </mat-card-content>
+  </mat-card>
+</div>

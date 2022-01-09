@@ -3,4 +3,6 @@ export interface UserModel {
   email: string;
   empId: string;
   balance: number;
+  role: string;
+  password: string;
 }

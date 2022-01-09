@@ -1,7 +1,16 @@
 .customize__add__money__card {
   height: -webkit-fill-available;
+  box-shadow: none;
 }
 .add__money__wrapper {
   height: 100%;
   text-align: center;
+}
+::ng-deep .customize__add__money .mat-dialog-container {
+  padding: 4px !important;
+}
+.button {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }

@@ -25,3 +25,23 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Features User
+
+1. Lazy loading
+2. Module Preloading strategy
+3. Reactive forms
+4. NGXS state management
+5. rxjs operators
+6. Guards
+7. Data resolver
+
+## login cred for admin
+
+ "empId": "test123456",
+ "password": "test@123"
+
+ ## login cred for employee
+
+ "empId": "test987654",
+ "password": "test@123"
