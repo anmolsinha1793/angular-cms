@@ -114,14 +114,14 @@ export class ItemsOfTheDayComponent implements OnInit {
           };
         })
       : res
+          .filter((elm) => elm.itemQuantity > 0)
           .map((el: ItemsOfTheDayModel, i: number) => {
             return {
               ...el,
               id: i + 1,
               actions: '',
             };
-          })
-          .filter((elm) => elm.itemQuantity > 0);
+          });
   }
   /**
    * Function to delete item
