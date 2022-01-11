@@ -18,7 +18,7 @@ import { ItemsOfTheDayModel } from '@shared/models/ItemsOfTheDay.model';
 import { TransactionDetailsModel } from '@shared/models/TransactionDetails.model';
 import { CMSModelState } from '@shared/state/cms.state';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 import { BuyItemComponent } from '../buy-item/buy-item.component';
 import { PickDayItemComponent } from '../pick-day-item/pick-day-item.component';
@@ -86,15 +86,16 @@ export class ItemsOfTheDayComponent implements OnInit {
    * @returns void.
    */
   setItemsOfTheDayForTable(): void {
-    this.itemsOfTheDayData$.pipe(takeUntil(this.eventSubscription)).subscribe(
+    this.itemsOfTheDayData$.pipe(
+      takeUntil(this.eventSubscription),
+      filter((res) => res.length > 0)
+      ).subscribe(
       (res: ItemsOfTheDayModel[]) => {
-        if (res.length > NumberEnum.ZERO) {
           this.dataResult = this.constructItems(res);
           this.totalSize = this.dataResult.length;
           this.dataSource = new MatTableDataSource(this.dataResult as any);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        }
       },
       (err) => {}
     );

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Select } from '@ngxs/store';
 import { TransactionDetailsModel } from '@shared/models/TransactionDetails.model';
@@ -53,9 +53,11 @@ export class TransactionDetailsComponent implements OnInit {
    * @returns void.
    */
   setTransactionsDataForTable(): void {
-    this.transactionData$.pipe(takeUntil(this.eventSubscription)).subscribe(
+    this.transactionData$.pipe(
+      takeUntil(this.eventSubscription),
+      filter((res) => res.length > 0)
+      ).subscribe(
       (res: TransactionDetailsModel[]) => {
-        if (res.length > NumberEnum.ZERO) {
           this.dataResult = res.map(
             (el: TransactionDetailsModel, i: number) => {
               return {
@@ -69,7 +71,6 @@ export class TransactionDetailsComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.dataResult as any);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        }
       },
       (err) => {}
     );

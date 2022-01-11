@@ -14,7 +14,7 @@ import {
 import { AvailableItemsModel } from '@shared/models/AvailableItems.model';
 import { CMSModelState } from '@shared/state/cms.state';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { AddEditItemComponent } from '../add-edit-item/add-edit-item.component';
 
 enum NumberEnum {
@@ -68,11 +68,12 @@ export class AvailableItemsComponent implements OnInit {
    */
   setAvailableItemsDataForTable(): void {
     combineLatest([this.commonService.getChange(), this.availableItemsData$])
-      .pipe(takeUntil(this.eventSubscription))
+      .pipe(
+        takeUntil(this.eventSubscription),
+        filter(([change, res]) => res.length > 0))
       .subscribe(
         ([change, res]) => {
           const items = this.store.selectSnapshot(CMSModelState.getItemsOfTheDay);
-          if (res.length > NumberEnum.ZERO) {
             this.dataResult = res.map((el: AvailableItemsModel, i: number) => {
               return {
                 ...el,
@@ -85,7 +86,6 @@ export class AvailableItemsComponent implements OnInit {
             this.dataSource = new MatTableDataSource(this.dataResult as any);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-          }
         },
         (err) => {}
       );

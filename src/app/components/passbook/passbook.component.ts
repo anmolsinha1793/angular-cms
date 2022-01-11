@@ -13,7 +13,7 @@ import { TransactionDetailsModel } from '@shared/models/TransactionDetails.model
 import { CMSModelState } from '@shared/state/cms.state';
 import * as moment from 'moment';
 import { Subject, Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { AddMoneyComponent } from '../add-money/add-money.component';
 
 enum NumberEnum {
@@ -61,9 +61,11 @@ export class PassbookComponent implements OnInit {
    * @returns void.
    */
   setTransactionsDataForTable(): void {
-    this.transactionData$.pipe(takeUntil(this.eventSubscription)).subscribe(
+    this.transactionData$.pipe(
+      takeUntil(this.eventSubscription),
+      filter((res) => res.length > 0)
+      ).subscribe(
       (res: TransactionDetailsModel[]) => {
-        if (res.length > NumberEnum.ZERO) {
           this.dataResult = res
             .filter(
               (elm) => elm.empId === sessionStorage.getItem('empId')
@@ -79,7 +81,6 @@ export class PassbookComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.dataResult as any);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        }
       },
       (err) => {}
     );

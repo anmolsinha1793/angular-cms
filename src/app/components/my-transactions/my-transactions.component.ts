@@ -7,7 +7,7 @@ import { TransactionDetailsModel } from '@shared/models/TransactionDetails.model
 import { CMSModelState } from '@shared/state/cms.state';
 import * as moment from 'moment';
 import { Subject, Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 enum NumberEnum {
   ZERO = 0,
@@ -55,9 +55,11 @@ export class MyTransactionsComponent implements OnInit {
    * @returns void.
    */
   setTransactionsDataForTable(): void {
-    this.transactionData$.pipe(takeUntil(this.eventSubscription)).subscribe(
+    this.transactionData$.pipe(
+      takeUntil(this.eventSubscription),
+      filter((res) => res.length > 0)
+      ).subscribe(
       (res: TransactionDetailsModel[]) => {
-        if (res.length > NumberEnum.ZERO) {
           this.dataResult = res
             .filter(
               (elm) =>
@@ -74,7 +76,6 @@ export class MyTransactionsComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.dataResult as any);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        }
       },
       (err) => {}
     );

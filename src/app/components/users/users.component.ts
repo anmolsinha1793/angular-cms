@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { combineLatest, Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
 import { AddMoneyComponent } from '../add-money/add-money.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -66,10 +66,12 @@ export class UsersComponent implements OnInit, OnDestroy {
    */
   setUserDataForTable(): void {
     combineLatest([this.commonService.getChange(), this.userData$])
-      .pipe(takeUntil(this.eventSubscription))
+      .pipe(
+        takeUntil(this.eventSubscription),
+        filter(([resp, res]) => res.length > 0)
+        )
       .subscribe(
         ([resp, res]) => {
-          if (res.length > NumberEnum.ZERO) {
             this.dataResult = res.map((el: UserModel, i: number) => {
               return {
                 ...el,
@@ -82,7 +84,6 @@ export class UsersComponent implements OnInit, OnDestroy {
             this.dataSource = new MatTableDataSource(this.dataResult as any);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-          }
         },
         (err) => {}
       );
