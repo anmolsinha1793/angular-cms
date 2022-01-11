@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
       this.loginService
         .getUser(loginFormValue.empId, loginFormValue.password)
         .subscribe((emp) => {
-          console.log('fsdf', emp);
           if (!emp) {
             this.isError = true;
             this.error = 'No user exists with given credentials.'
@@ -63,7 +62,6 @@ export class LoginComponent implements OnInit {
             });
           }
         });
-      // this.submitEM.emit(this.loginForm.value);
     }
   }
 }
