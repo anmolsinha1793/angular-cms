@@ -4,7 +4,7 @@ import { CommonActivityService } from '@core/services/common-activity.service';
 import { Store } from '@ngxs/store';
 import { SetAvailableItems, SetItemsOfTheDay } from '@shared/actions/Items.action';
 import { SetTransaction } from '@shared/actions/Transactions.action';
-import { SetUser } from '@shared/actions/User.action';
+import { AddUser, AddUsers, SetUser } from '@shared/actions/User.action';
 import { CMSModelState } from '@shared/state/cms.state';
 import { forkJoin, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -31,7 +31,7 @@ export class AdminLayoutComponent implements OnInit {
       .fetchAvailableItems()])
       .pipe(takeUntil(this.eventSubscription))
       .subscribe(([users, items, transactions, avitems]) => {
-        if (this.store.selectSnapshot(CMSModelState.getUserData).length === 0) this.store.dispatch(new SetUser(users));
+        this.store.selectSnapshot(CMSModelState.getUserData).length === 0 ? this.store.dispatch(new SetUser(users)) : this.store.dispatch(new AddUsers(users));
         this.commonService.setChange(true);
         this.store.dispatch(new SetItemsOfTheDay(items));
         this.store.dispatch(new SetTransaction(transactions));

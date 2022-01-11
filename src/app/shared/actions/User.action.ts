@@ -10,6 +10,11 @@ export class AddUser {
 
   constructor(public payload: UserModel) {}
 }
+export class AddUsers {
+  static readonly type = `[CMS] AddUsers`;
+
+  constructor(public payload: UserModel[]) {}
+}
 export class UpdateUser {
   static readonly type = `[CMS] UpdateUser`;
 

@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '@core/api/login.service';
+import { AuthGuard } from '@core/guards/auth.guard';
+import { CommonActivityService } from '@core/services/common-activity.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private commonService: CommonActivityService
   ) {
     this.loginForm = new FormGroup({
       empId: new FormControl('', Validators.required),
@@ -40,6 +43,7 @@ export class LoginComponent implements OnInit {
    */
   submit(): void {
     if (this.loginForm.valid) {
+      console.log(this.router.config);
       const loginFormValue = this.loginForm.getRawValue();
       this.loginService
         .getUser(loginFormValue.empId, loginFormValue.password)
@@ -51,11 +55,13 @@ export class LoginComponent implements OnInit {
           }
           this.isError = false;
           if (emp?.role === 'ADMIN') {
+            this.router.resetConfig(this.commonService.getAdminRoutes());
             this.router.navigate(['./admin-section']).then(() => {
               sessionStorage.setItem('empId', loginFormValue.empId);
               sessionStorage.setItem('role', emp?.role);
             });
           } else if (emp?.role === 'EMP') {
+            this.router.resetConfig(this.commonService.getEmployeeRoutes());
             this.router.navigate(['./employee-section']).then(() => {
               sessionStorage.setItem('empId', loginFormValue.empId);
               sessionStorage.setItem('role', emp?.role);

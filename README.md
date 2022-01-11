@@ -35,6 +35,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 5. rxjs operators
 6. Guards
 7. Data resolver
+8. Router reset config
 
 ## login cred for admin
 

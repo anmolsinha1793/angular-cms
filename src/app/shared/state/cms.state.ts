@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { AddAvailableItems, AddItemsOfTheDay, DeleteAvailableItems, DeleteItemsOfTheDay, EditItemsOfTheDay, SetAvailableItems, SetItemsOfTheDay, UpdateAvailableItems } from "../actions/Items.action";
 import { AddTransaction, SetTransaction } from "../actions/Transactions.action";
-import { AddUser, SetUser, UpdateUser } from "../actions/User.action";
+import { AddUser, AddUsers, SetUser, UpdateUser } from "../actions/User.action";
 import { AvailableItemsModel } from "../models/AvailableItems.model";
 import { ItemsOfTheDayModel } from "../models/ItemsOfTheDay.model";
 import { TransactionDetailsModel } from "../models/TransactionDetails.model";
@@ -69,6 +69,16 @@ export class CMSModelState {
         userList: append([payload])
       })
     );
+  }
+  @Action(AddUsers)
+  addUsers(
+    { getState, patchState, setState }: StateContext<CMSModel>,
+    { payload }: AddUsers
+  ): void {
+    const state = getState();
+    patchState({
+      userList: [...state.userList, ...payload] as any,
+    });
   }
   @Action(UpdateUser)
   updateUser(
