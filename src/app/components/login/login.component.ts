@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   @Input() error: string | null = '';
   loginForm: FormGroup;
   @Output() submitEM = new EventEmitter();
+  isError = false;
 
   constructor(
     private readonly router: Router,
@@ -26,7 +27,12 @@ export class LoginComponent implements OnInit {
    * Lifecycle hook for angular
    * @returns void.
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginForm.valueChanges
+      .subscribe((res) => {
+        this.isError = false;
+      })
+  }
 
   /**
    * Function to submit entered details
@@ -38,6 +44,13 @@ export class LoginComponent implements OnInit {
       this.loginService
         .getUser(loginFormValue.empId, loginFormValue.password)
         .subscribe((emp) => {
+          console.log('fsdf', emp);
+          if (!emp) {
+            this.isError = true;
+            this.error = 'No user exists with given credentials.'
+            return;
+          }
+          this.isError = false;
           if (emp?.role === 'ADMIN') {
             this.router.navigate(['./admin-section']).then(() => {
               sessionStorage.setItem('empId', loginFormValue.empId);
